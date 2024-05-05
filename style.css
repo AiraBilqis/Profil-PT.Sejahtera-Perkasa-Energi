@@ -19,24 +19,28 @@
     .text-xl{
         font-size: 28px;
     }
+    .col-md-6 .img-fluid {
+        padding-left: 45px !important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px){ /* Tablet */
     .text-sm {
-        font-size: 10px;
+        font-size: 9px;
     }
     .text-md {
-        font-size: 14px;
+        font-size: 11px;
     }
     .text-md-lg{
-        font-size: 16px;
+        font-size: 14px;
     }
     .text-lg{
-        font-size: 23px;
+        font-size: 21px;
     }
     .text-xl{
-        font-size: 25px;
+        font-size: 23px;
     }
+
     /* Mengatur card-about untuk mengisi seluruh lebar container */
     .card-about {
         width: 100%;
@@ -47,23 +51,42 @@
     .section-about .container .col-md-6:last-child {
         display: none;
     }
+
+    .col-md-6 .img-fluid {
+        padding-left: 15px !important;
+    }
 }  
+
+@media  (min-width: 320px) and (max-width: 650px){
+    .contact-section .container-fluid .mx-5{
+        /* flex-direction: column;
+        column-gap: 3rem !important; */
+        margin-right: 1rem !important;
+        margin-left: 1rem !important; 
+    }
+}
+
+@media (min-width: 320px) and (max-width: 635px){ /* Handphone */
+    .map iframe{
+        width: 250px !important;
+    }
+}
 
 @media (min-width: 320px) and (max-width: 767px){ /* Handphone */
     .text-sm {
         font-size: 8px;
     }
     .tex-md {
-        font-size: 11px;
+        font-size: 9px;
     }
     .text-md-lg{
         font-size: 12px;
     }
     .text-lg{
-        font-size: 18px;
+        font-size: 17px;
     }
     .text-xl{
-        font-size: 20px;
+        font-size: 19px;
     }
 }
 
@@ -127,6 +150,17 @@ p.section-content {
     display: flex;
     gap: 5%;
     font-size: 12px;
+}
+
+.col-md-6 .img-fluid {
+    border-top-right-radius: 220px;
+    border-bottom-right-radius: 220px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.vector{
+    padding-right: 40px;
 }
 
 .quotes{
