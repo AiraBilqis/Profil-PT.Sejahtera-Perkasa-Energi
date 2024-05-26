@@ -1,210 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./bg/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./style.css">
 
-    <!-- BOOTSRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-	<title>PT. Sejahtera Perkasa Energi</title>
+    <!-- AlpineJS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <style>
-        /* .navbar{
-            background: linear-gradient(180deg, rgba(32, 32, 32, 0.85) 0%, rgba(45, 45, 45, 0.45) 64.44%, rgba(56, 56, 56, 0.03) 100%);
-        } */
+    <!-- Title -->
+    <title>Home | PT. Sejahtera Perkara Energi</title>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                Biru: '#256293',
+                Kuning: '#ffd25c',
+                Hijau: '#b2fc68',
+              }
+            }
+          }
+        }
+      </script>
+
+      <!-- Hero Section Background Image -->
+      <style>
+        .bg-hero {
+            background-image: url('./assets/img/bg-hero.png');
+            background-size: cover;
+            background-position: center;
+            border-bottom-left-radius: 15rem; /* Adjust as needed for lg size */
+        }
+
+        .bg-footer {
+            background-image: url('./assets/img/footer.png'); 
+            border-top-right-radius: 15rem;
+        }
+
+        @media (max-width: 1024px) {
+            .bg-hero {
+                border-bottom-left-radius: 0;
+            }
+
+            .bg-footer {
+                border-top-right-radius: 0;
+            }
+        }
     </style>
 </head>
-<body style="font-family: 'Open Sans', 'Inter';">
-    <header>
-        <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light px-4">
-            <div class="container-fluid align-middle">
-                <!-- Logo -->
-                <a class="navbar-brand mx-0" href="#">
-                    <img src="./images/logo.png" alt="logo" width="80%" class="align-text-top px-2 py-2" style="border-right: 2px solid white;">
+<body>
+    <!-- Navbar -->
+    <nav x-data="{ isOpen: false }" class="fixed top-0 left-0 z-50 w-full bg-Biru">
+        <div class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
+            <div class="flex items-center justify-between">
+                <a href="#">
+                    <img class="w-auto h-14 md:h-16 lg:h-18" src="./assets/img/Logo.png" alt="">
                 </a>
-                <!-- Navbar Text -->
-                <span class="navbar-text text-md-lg text-white py-0" style="font-weight: 700;">
-                    PT. SEJAHTERA<br>PERKASA ENERGI
-                </span>
-                <button class="navbar-toggler" type="button" id="navbarToggleBtn" style="border-color: white;">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <!-- Button Navbar -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto gap-2 d-flex align-items-center">
-                        <li class="nav-item text-sm">
-                            <a class="nav-link active text-white" style="font-weight: 800;" aria-current="page" href="./">BERANDA</a>
-                        </li>
-                        <li class="nav-item text-sm">
-                            <a class="nav-link text-white" style="font-weight: 800;" href="#contact">KONTAK</a>
-                        </li>
-                    </ul>
+    
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden">
+                    <button x-cloak @click="isOpen = !isOpen" type="button" class="text-white focus:outline-none md:hidden" aria-label="toggle menu">
+                        <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                        </svg>
+                
+                        <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </nav>
-
-        <script>
-            // Ambil elemen navbar
-            var navbar = document.querySelector('.navbar');
-        
-            // Tambahkan event listener untuk deteksi scroll
-            window.addEventListener('scroll', function() {
-                // Tambahkan kelas 'navbar-scrolled' jika user telah menscroll
-                if (window.scrollY > 0) {
-                    navbar.classList.add('navbar-scrolled');
-                } else {
-                    navbar.classList.remove('navbar-scrolled');
-                }
-            });
-        
-            // Tambahkan event listener untuk toggle menu di mobile
-            document.getElementById('navbarToggleBtn').addEventListener('click', function() {
-                document.getElementById('navbarSupportedContent').classList.toggle('show');
-            });
-        </script>
-
-        <!-- Background Header -->
-        <div id="latar" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#latar" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#latar" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#latar" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#latar" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#latar" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            </div>
-
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="2000">
-                    <img src="./images/gambar1.jpg" class="d-block w-100" alt="bg1" style="background-size: cover; background-repeat: no-repeat;">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="./images/gambar2.png" class="d-block w-100" alt="bg2" style="background-size: cover; background-repeat: no-repeat;">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="./images/gambar3.jpg" class="d-block w-100" alt="bg3" style="background-size: cover; background-repeat: no-repeat;">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="./images/gambar4.png" class="d-block w-100" alt="bg4" style="background-size: cover; background-repeat: no-repeat;">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="./images/gambar5.png" class="d-block w-100" alt="bg5" style="background-size: cover; background-repeat: no-repeat;" 5>
+    
+            <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+            <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-Biru md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center">
+                <div class="flex flex-col md:flex-row md:mx-6">
+                    <a class="my-2 text-white hover:border-b hover:border-white md:mx-4 md:my-0 font-semibold" href="index.html">Home</a>
+                    <a class="my-2 text-white hover:border-b hover:border-white md:mx-4 md:my-0 font-semibold" href="#contact">Contact</a>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- About PT. Sejahtera Perkasa Energi -->
-    <section id="section-about" class="company-profile container-fluid px-0">
-        <div class="container mx-auto gap-4">
-            <div class="col-md-6 pl-5 mx-0 card-about">
-                <h2 class="title text-white text-xl">PROFIL PERUSAHAAN</h2>
-                <p class="section-content text-md">PT. Sejarahtera Perkasa Energi merupakan perusahaan yang bergerak dibidang perdagangan 
-                    bahan bakar minyak industri. Perusahaan ini telah berdiri sejak 2 Januari 2020 dengan memiliki izin usaha perdagangan besar 
-                    berbahan bakar padat, cair, gas, dan produk yang berhubungan dengan itu. 
-                </p>
-                <br>
-                <p class="quotes text-sm">
-                   "Kami melayani pelanggan seluruh Provinsi Sumatra Selatan. Perusahaan kami bekerja sesuai target yang ditetapkan pelanggan demi menjamin kinerja operasional pelanggan."
-                </p>
-            </div>
-            <div class="col-md-6 pl-5 mx-0 d-none d-md-block ">
-                <img src="./images/side photo.png" alt="vector" class="vector img-fluid d-none d-md-inline-block align-self-end align-text-right">
-            </div>
-        </div>
-    </section>
-
-    <!-- Visi & Misi -->
-    <section id="section-vismis">
-        <div class="container box-vismis">
-            <div class="visi">
-                <h2 class="text-lg">VISI</h2>
-                <p class="text-md">Menjadi salah satu supplier BBM yang diakui integritasnya oleh seluruh pelanggan kami dan menjadi perusahaan yang lebih maju.</p>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center vector2">
-            <img src="./images/vector2.png" width="50%" height="1" alt="vector">
-        </div>        
-        <div class="container box-vismis">
-            <div class="misi">
-                <h2 class="text-lg">MISI</h2>
-                <p class="text-md">Memenuhi segala kebutuhan bahan bakar solar melalui darat, laut dan bunker untuk industri dengan layanan profesional.</p>
-                <p class="text-md">Berkomitmen untuk menjaga kepuasan pelanggan dengan menjaga kualitas dan ketepatan waktu pengiriman.</p>
-                <p class="text-md">Mempermudah transaksi bagi para pelanggan dengan komunikasi.</p>
-                <p class="text-md">Terus membina hubungan baik dengan distributor dan semua mitra kerja.</p>
-                <p class="text-md">Berkomitmen untuk terus meningkatkan kualitas SDM secara kompetensi dan juga kesejahteraannya.</p>                
-            </div>
-        </div>
-    </section>
-
-    <!-- Direksi -->
-    <section id="section-direksi" class="team-section container-fluid">
-        <div class="container">
-            <div class="col-12">
-                <p class="pt-title text-md-lg">PT. SEJAHTERA PERKASA ENERGI</p>
-                <h2 class="title-sub text-lg">DIREKSI DAN PEMEGANG SAHAM</h2>
-                <p class="section-subtitle text-md mb-2">"Perusahaan PT sejahtera akan menjadi perusahaan minyak yang besar dengan dukungan orang-orang tepat pada bidangnya."</p>
-            </div>
-        </div>
-        <div class="container d-flex flex-wrap justify-content-center">
-            <div class="col-md-4 col-lg-4 mb-4 mx-3 px-4 card" style="background-color: #5AA0D8C7; border: 1px solid #F9F9F94D; box-shadow: 0px 4px 4px 0px #00000040;">
-                <div class="card sub-card text-center mt-5 mb-5 py-4 px-4" style="background-color: #9dc7e9c5; box-shadow: 3px 3px 6px 0px #00000066 inset; border-top-left-radius: 30px; border-top-right-radius: 0px; border-bottom-right-radius: 30px; border-bottom-left-radius: 0px;">
-                    <h4 class="card-title text-white text-md-lg">Medius Susanto</h4>
-                    <p class="card-text text-white text-md">Direktur</p>
+    <!-- Hero Section -->
+    <div class="bg-hero">
+        <div class="items-center lg:flex container mx-auto pt-32">
+            <div class="w-11/12 mx-auto md:w-full lg:w-1/2">
+                <div class="lg:max-w-lg md:w-11/12 md:mx-auto lg:w-full lg:ml-5">
+                    <h1 class="text-3xl font-extrabold text-white lg:text-6xl hidden md:hidden lg:block">
+                        PT SEJAHTERA <br> PERKASA ENERGI
+                    </h1>
+                    <h1 class="text-3xl font-extrabold text-white lg:text-6xl lg:hidden">
+                        PT SEJAHTERA PERKASA ENERGI
+                    </h1>
+                    
+                    <p class="mt-3 text-white">
+                        PT. Sejahtera Perkasa Energi is a company engaged in the trading of industrial fuel oil. Established since January 2, 2020, the company holds a license for wholesale trading of solid, liquid, gas fuels, and related products. We serve customers across South Sumatra Province, working to meet their set targets to ensure operational performance.
+                    </p>
+                    
+                    <div class="flex items-center gap-10 mt-10">
+                        <a href="#contact">
+                            <button class="lg:w-auto px-5 py-2 text-lg md:text-2xl tracking-wider text-black transition-colors duration-300 transform bg-Kuning rounded-full font-semibold">
+                                Contact Us
+                            </button>
+                        </a>
+                        
+                        <a href="#stakeholder" class="flex items-center text-white gap-2 text-md md:text-xl">
+                            <span>
+                                Explore More
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>                                  
+                        </a>
+                    </div>                    
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4 mb-4 mx-3 px-4 card" style="background-color: #5AA0D8C7; border: 1px solid #F9F9F94D; box-shadow: 0px 4px 4px 0px #00000040;">
-                <div class="card sub-card text-center mt-5 mb-5 py-4 px-4" style="background-color: #9dc7e9c5; box-shadow: 3px 3px 6px 0px #00000066 inset; border-top-left-radius: 30px; border-top-right-radius: 0px; border-bottom-right-radius: 30px; border-bottom-left-radius: 0px;">
-                    <h4 class="card-title text-white text-md-lg">Panca Mubala</h4>
-                    <p class="card-text text-white text-md">Komisaris</p>
+
+            <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+                <img class="w-5/6 h-5/6 lg:max-w-3xl rounded-t-full" src="./assets/img/hero-img.png" alt="Hero Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="container px-6 py-16 mx-auto">
+        <div class="items-center lg:flex gap-20">
+            <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 mt-6 lg:mt-0">
+                <div class="md:mt-24">
+                    <img class="w-full h-[250px] object-cover rounded-lg mb-5" src="./assets/img/about1.jpg" alt="about1">
+                    <img class="w-full h-[250px] object-cover rounded-lg" src="./assets/img/about2.jpg" alt="about2">
+                </div>
+                <div class="md:mb-24">
+                    <img class="w-full h-[250px] object-cover rounded-lg mb-5" src="./assets/img/about3.png" alt="about3">
+                    <img class="w-full h-[250px] object-cover rounded-lg" src="./assets/img/hero-img.png" alt="about4">
+                </div>
+            </div>       
+
+            <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+                <div class="lg:max-w-lg">
+                    <h1 class="text-3xl font-semibold text-black lg:text-4xl">
+                        Vision
+                    </h1>
+                    
+                    <p class="mt-3 text-black text-xl">
+                        Become a recognized supplier of fuel oil, known for its integrity by all our customers, and advance as a company.
+                    </p>
+                </div>
+                
+                <div class="lg:max-w-lg mt-10">
+                    <h1 class="text-3xl font-semibold text-black lg:text-4xl">
+                        Mision
+                    </h1>
+                    
+                    <p class="mt-3 text-xl text-black flex items-center">
+                        <span class="rounded-full bg-Kuning text-black rounded-full px-5 mr-5 flex items-center h-12">1</span>
+                        Fulfill all solar fuel needs through land, sea, and bunker transportation for industries with professional services.
+                    </p>
+                    <p class="mt-3 text-xl text-black flex items-center">
+                        <span class="rounded-full bg-Kuning text-black rounded-full px-5 mr-5 flex items-center h-12">2</span>
+                        Commit to customer satisfaction by maintaining quality and timely delivery.
+                    </p>
+                    <p class="mt-3 text-xl text-black flex items-center">
+                        <span class="rounded-full bg-Kuning text-black rounded-full px-5 mr-5 flex items-center h-12">3</span>
+                        Simplify transactions for customers through effective communication.
+                    </p>
+                    <p class="mt-3 text-xl text-black flex items-center">
+                        <span class="rounded-full bg-Kuning text-black rounded-full px-5 mr-5 flex items-center h-12">4</span>
+                        Foster good relationships with distributors and all business partners.
+                    </p>
+                    <p class="mt-3 text-xl text-black flex items-center">
+                        <span class="rounded-full bg-Kuning text-black rounded-full px-5 mr-5 flex items-center h-12">5</span>
+                        Commit to continuously improving the competency and welfare of human resources.
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Stakeholder Section -->
+    <div class="container mx-auto my-20" id="stakeholder">
+        <div class="flex justify-center">
+            <div class="w-full lg:w-4/5 sm:w-11/12 md:w-11/12">
+                <div class="bg-gray-100 rounded-lg p-5 md:p-6 lg:p-20">
+                    <!-- Left Section -->
+                    <div class="flex flex-col lg:flex-row justify-between items-center lg:w-4/5 mx-auto">
+                        <div>
+                            <p class="mb-10 text-xl">Board of</p>
+                            <p class="text-2xl lg:text-4xl font-bold text-gray-800 lg:mr-4 mb-4 lg:mb-0">Directors and Shareholders</p>
+                            <p class="font-normal mt-10 w-4/5">"The company PT Sejahtera will become a major oil company with the support of the right people in their respective fields."</p>
+                        </div>
+                        <!-- Right Section -->
+                        <div class="lg:flex lg:flex-col justify-between lg:w-1/2">
+                            <!-- Top Card -->
+                            <div class="w-full lg:mb-4 md:mt-10 md:mr-10 lg:mt-0 lg:mr-0 my-10 lg:my-0">
+                                <div class="bg-white rounded-lg p-4 flex items-center shadow md:w-[300px] lg:w-full">
+                                    <div class="p-2 bg-Kuning rounded-full">
+                                        <img src="./assets/img/face-icon.png" alt="person" class="rounded-full">
+                                    </div>
+                                    <div class="w-2/3 pl-4">
+                                        <p class="font-semibold">Medius Susanto</p>
+                                        <p class="text-gray-600">Director</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom Card -->
+                            <div class="w-full md:mt-10 lg:mt-0">
+                                <div class="bg-white rounded-lg p-4 flex items-center shadow md:w-[300px] lg:w-full">
+                                    <div class="p-2 bg-Hijau rounded-full">
+                                        <img src="./assets/img/face-icon.png" alt="person" class="rounded-full">
+                                    </div>
+                                    <div class="w-2/3 pl-4">
+                                        <p class="font-semibold">Panca Mubala</p>
+                                        <p class="text-gray-600">Commissioners</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="contact-section" id="contact">
-        <div class="container-fluid">
-            <div class="row justify-content-center align-items-center mx-5">
-                <div class="col-md-auto mx-0">
-                    <div class="judul d-inline-block align-middle">
-                        <img src="./images/logo.png" alt="logo" style="width: 11%;" class="d-inline-block">
-                        <p class="text-white text-lg align-middle title-footer d-inline-block mb-0">PT. SEJAHTERA PERKASA ENERGI</p>
-                    </div>
-                    <div class="map">
-                        <iframe class="mt-3 mb-2"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5842265636693!2d104.7482453!3d-2.9351433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b75bdc914f96b%3A0x9d4d65f4475ff4ed!2sAFIE%20LAUNDRY%20WA%2008159514255!5e0!3m2!1sen!2sid!4v1712132082259!5m2!1sen!2sid" class="alamat" width="500" height="350" style="border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>            
-                <div class="col-md-6 col-lg-4 mx-0 text-white">
-                    <br>
-                    <h4 class="text-md-lg contact">Contact Information:</h4>
-                    <p>
-                        <strong class="info-contact text-sm">Phone: +62 822 6950 9828</strong><br>
-                        <strong class="info-contact text-sm">Email: <a class="text-white" href="mailto:pt.sejahteraperkasaenergi@gmail.com">pt.sejahteraperkasaenergi@gmail.com</a></strong>
-                    </p>
-                    <h4 class="text-md-lg address">Address:</h4>
-                    <p class="info-address text-sm">
-                        JL. Mayor Zurbi Busata I.r Sekolah, Kel. Sukajaya, Kec. Sukarani, Palembang, Sumatera Selatan.
-                    </p>
+    <footer class="bg-footer bg-cover bg-center py-10">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-6 gap-32 items-center">
+            <!-- Left Section: Logo and Google Maps -->
+            <div class="items-center mb-4 lg:mb-0">
+                <!-- Logo -->
+                <img src="./assets/img/footer-logo.png" alt="Footer Logo" class="h-24 mb-10">
+    
+                <!-- Google Maps -->
+                <iframe class="rounded-l-lg rounded-br-lg rounded-tr-[15rem] w-full h-96 lg:w-[900px] lg:h-[300px] hover:shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5842265636693!2d104.7482453!3d-2.9351433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b75bdc914f96b%3A0x9d4d65f4475ff4ed!2sAFIE%20LAUNDRY%20WA%2008159514255!5e0!3m2!1sen!2sid!4v1712132082259!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <!-- Right Section: Contact Information -->
+            <div class="text-white" id="contact">
+                <div class="text-lg font-bold mb-5">Kontak</div>
+            
+                <div class="flex gap-2 items-center mb-5">
+                    <img src="./assets/img/phone-icon.png" alt="phone" class="h-6 w-6">
+                    <a href="tel:+6282269509828" class="mb-2 text-lg">+62 822 6950 9828</a>
                 </div>
-                <hr class="text-white mt-5 mb-0" style="border-width: medium;">
+            
+                <div class="flex gap-2 items-center mb-5">
+                    <img src="./assets/img/email-icon.png" alt="email" class="h-6 w-6">
+                    <a href="mailto:pt.sejahteraperkasaenergi@gmail.com" class="mb-2 text-lg">pt.sejahteraperkasaenergi@gmail.com</a>
+                </div>
+            
+                <div class="flex gap-2 items-center mb-5">
+                    <img src="./assets/img/map-icon.png" alt="map" class="h-6 w-6">
+                    <p class="mb-2 text-lg">JL. Mayor Zurbi Busata I.r Sekolah, Kel. Sukajaya, Kec. Sukarani, Palembang, Sumatera Selatan.</p>
+                </div>
+            </div>            
+        </div>
+
+        <div class="mt-5">
+            <div class="border-t border-white w-11/12 mx-auto"></div>
+
+            <div class="flex items-center justify-center mt-5">
+                <img src="./assets/img/copyright-icon.png" alt="copyright" class="h-3 w-3">
+                <span class="ml-3 text-white text-sm">2024  PT. Sejahtera Perkasa Energi | All rights reserved</span>
             </div>
         </div>
-        <div class="container justify-content-center">
-            <div class="row align-items-center gap-5">
-                <div class="col-md-auto mx-0">
-                    <p class="text-white text-md">&#169; 2024  PT. Sejahtera Perkasa Energi | All rights reserved</p>
-                </div>
-            </div>
-        </div>
+
     </footer>
 </body>
-
 </html>
